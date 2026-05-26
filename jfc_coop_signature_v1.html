@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JFC COOP – IT Signature</title>
+<style>
+body { background:#111827; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; margin:0; padding:20px; box-sizing:border-box; }
+.label { color:#4b5563; font-family:monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; margin-bottom:14px; }
+.preview { background:#ffffff; border-radius:10px; padding:28px 30px; max-width:640px; width:100%; box-shadow:0 20px 60px rgba(0,0,0,0.5); }
+.copy-hint { margin-top:16px; color:#4b5563; font-family:monospace; font-size:10px; text-align:center; letter-spacing:1px; }
+
+/* ── SIGNATURE STYLES ── */
+.sig-wrap { font-family: 'Segoe UI', Arial, sans-serif; max-width:580px; }
+.sig-top { display:flex; align-items:center; gap:16px; }
+.sig-logo img { width:72px; height:72px; border-radius:50%; border:2px solid #1a73e8; }
+.sig-name { font-size:18px; font-weight:700; color:#1a1a1a; margin:0 0 2px; }
+.sig-name span { color:#1a73e8; }
+.sig-title { font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#1a73e8; margin:0 0 3px; }
+.sig-company { font-size:11px; color:#6b7280; margin:0; letter-spacing:.5px; }
+.sig-status { display:inline-block; font-size:9px; color:#16a34a; background:#dcfce7; border:1px solid #86efac; padding:1px 6px; border-radius:10px; letter-spacing:1px; text-transform:uppercase; margin-top:4px; }
+
+.sig-divider-wrap { margin:14px 0 10px; position:relative; height:28px; overflow:hidden; }
+.sig-line { position:absolute; top:50%; left:0; right:0; height:1.5px; background:linear-gradient(90deg,#e5e7eb,#1a73e8 40%,#e5e7eb); transform:translateY(-50%); }
+.sig-vehicle { position:absolute; top:50%; font-size:18px; animation:drive 6s linear infinite; white-space:nowrap; }
+.sig-vehicle::before { content:'✈'; }
+@keyframes drive {
+  0%   { left:-30px; transform:translateY(-60%); }
+  100% { left:105%;  transform:translateY(-60%); }
+}
+
+.sig-grid { display:flex; gap:24px; margin-top:10px; flex-wrap:wrap; }
+.sig-col { flex:1; min-width:180px; }
+.sig-field-label { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#9ca3af; font-weight:600; margin:0 0 2px; }
+.sig-field-val { font-size:12.5px; color:#1a1a1a; margin:0 0 10px; font-weight:500; }
+.sig-field-val a { color:#1a73e8; text-decoration:none; }
+
+.sig-tags { display:flex; gap:6px; flex-wrap:wrap; margin:10px 0 12px; }
+.sig-tag { font-size:9px; letter-spacing:1.5px; text-transform:uppercase; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; padding:2px 8px; border-radius:3px; font-weight:600; }
+
+.sig-confidential { border-left:3px solid #1a73e8; padding:8px 12px; background:#f8faff; border-radius:0 4px 4px 0; margin-top:6px; }
+.sig-conf-title { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#1a73e8; font-weight:700; margin:0 0 3px; }
+.sig-conf-text { font-size:10px; color:#6b7280; margin:0; line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="label">// Gmail Signature Preview — JFC COOP IT Division</div>
+<div class="preview">
+
+<!-- ════════════════════════════════════════════════════════════
+     GMAIL SIGNATURE — Copy this entire <table> block into Gmail
+     Settings → See all settings → General → Signature → Create new
+     Paste in the HTML source or use the rich-text editor approach
+     ════════════════════════════════════════════════════════════ -->
+
+<div class="sig-wrap">
+
+  <!-- TOP: Logo + Name block -->
+  <div class="sig-top">
+    <div class="sig-logo">
+      <img src="data:image/png;base64,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" alt="JFC COOP Logo">
+    </div>
+    <div>
+      <p class="sig-name">Bryan <span>Lutuaco</span></p>
+      <p class="sig-title">IT Specialist</p>
+      <p class="sig-company">JFC Multi-Purpose Cooperative · IT Division</p>
+      <span class="sig-status">● Online</span>
+    </div>
+  </div>
+
+  <!-- ANIMATED DIVIDER -->
+  <div class="sig-divider-wrap">
+    <div class="sig-line"></div>
+    <div class="sig-vehicle"></div>
+  </div>
+
+  <!-- CONTACT GRID -->
+  <div class="sig-grid">
+    <div class="sig-col">
+      <p class="sig-field-label">// Mobile</p>
+      <p class="sig-field-val"><a href="tel:+639930279439">📱 09930279439</a></p>
+      <p class="sig-field-label">// Organization</p>
+      <p class="sig-field-val">🏢 JFC Cooperative</p>
+    </div>
+    <div class="sig-col">
+      <p class="sig-field-label">// Division</p>
+      <p class="sig-field-val">IT Department – Systems &amp; Support</p>
+      <p class="sig-field-label">// System</p>
+      <p class="sig-field-val">SYS / JFC-COOP / IT DIVISION</p>
+    </div>
+  </div>
+
+  <!-- TAGS -->
+  <div class="sig-tags">
+    <span class="sig-tag">JFC Multi-Purpose Coop</span>
+    <span class="sig-tag">Employee Cooperative</span>
+    <span class="sig-tag">IT Division</span>
+  </div>
+
+  <!-- CONFIDENTIALITY NOTICE -->
+  <div class="sig-confidential">
+    <p class="sig-conf-title">// Confidentiality Notice</p>
+    <p class="sig-conf-text">This email and any files transmitted are confidential and intended solely for the named recipient. If received in error, please notify JFC Coop immediately and delete from your system. Unauthorized disclosure is strictly prohibited.</p>
+  </div>
+
+</div>
+<!-- END SIGNATURE -->
+
+</div>
+<p class="copy-hint">→ Open this file in a browser · Use Ctrl+A / Cmd+A to select all · Paste into Gmail's signature editor</p>
+</body>
+</html>
