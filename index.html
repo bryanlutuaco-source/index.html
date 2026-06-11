@@ -252,14 +252,7 @@
 
 <script>
   // ============================================================
-  //  STEP 1 — Paste your Google Apps Script Web App URL below
-  //  How to get it:
-  //    1. Go to script.google.com → New project
-  //    2. Paste the contents of Code.gs into the editor
-  //    3. Click Deploy > New Deployment
-  //    4. Type: Web App
-  //    5. Execute as: Me  |  Who has access: Anyone
-  //    6. Click Deploy → Copy the Web App URL → paste below
+  //  Paste your Google Apps Script Web App URL below
   // ============================================================
   var GAS_URL = "https://script.google.com/macros/s/AKfycbxkhfeByhl6L3TwmWj6-6R0wnnwr3VjZVGiUY-ElxOpUTGKwGXvi2MDqxTIr1sfkdiU8w/exec";
   // ============================================================
@@ -311,7 +304,7 @@
     b.scrollIntoView({behavior:"smooth",block:"nearest"});
   }
 
-function handleSub() {
+  function handleSub() {
     var name  = document.getElementById("fname").value.trim();
     var email = document.getElementById("femail").value.trim();
     var title = document.getElementById("ftitle2").value.trim();
@@ -320,16 +313,15 @@ function handleSub() {
     if (!name||!email||!title||!desc){ showS("err","Required fields missing — name, email, title & description."); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ showS("err","Invalid email address format."); return; }
 
-    // ✅ Define all variables BEFORE fetch
-    var dept    = document.getElementById("fdept").value||"Not specified";
-    var asset   = document.getElementById("fasset").value.trim()||"Not provided";
-    var tkId    = document.getElementById("tid").textContent;
-    var priority= PLIST[pidx].l;
-    var stEl    = document.querySelector(".topt.sel span");
-    var svEl    = document.querySelector(".sbtn.act");
-    var reqType = stEl ? stEl.textContent : "Not selected";
-    var severity= svEl ? svEl.childNodes[0].textContent.trim()+" — "+svEl.querySelector(".sub").textContent : "SEV-3 — Medium";
-    var now     = new Date().toLocaleString("en-PH",{timeZone:"Asia/Manila"});
+    var dept     = document.getElementById("fdept").value||"Not specified";
+    var asset    = document.getElementById("fasset").value.trim()||"Not provided";
+    var tkId     = document.getElementById("tid").textContent;
+    var priority = PLIST[pidx].l;
+    var stEl     = document.querySelector(".topt.sel span");
+    var svEl     = document.querySelector(".sbtn.act");
+    var reqType  = stEl ? stEl.textContent : "Not selected";
+    var severity = svEl ? svEl.childNodes[0].textContent.trim()+" — "+svEl.querySelector(".sub").textContent : "SEV-3 — Medium";
+    var now      = new Date().toLocaleString("en-PH",{timeZone:"Asia/Manila"});
 
     var payload = {
       ticket_id:tkId, from_name:name, from_email:email, department:dept,
@@ -339,48 +331,7 @@ function handleSub() {
 
     var btn = document.getElementById("sbtn");
     btn.disabled = true;
-    btn.innerHTML = '<div class="spin"></div> Sending\u2026';
-    showS("inf","Submitting ticket \u2014 sending to IT queue\u2026");
-
-    // ✅ Single fetch call, payload defined above
-    fetch(GAS_URL, { method:"POST", headers:{"Content-Type":"text/plain"}, body:JSON.stringify(payload) })
-      .then(function(r){ return r.json(); })
-      .then(function(data){
-        if(data.status==="ok"){
-          showS("ok", tkId+" submitted \u2014 email sent to bryan.lutuaco@jfccoop.com.ph");
-          btn.innerHTML='<i class="ti ti-check" aria-hidden="true"></i> Submitted!';
-          setTimeout(function(){ resetF(); btn.disabled=false; }, 6000);
-        } else {
-          throw new Error(data.message||"Server error");
-        }
-      })
-      .catch(function(err){
-        showS("err","Send failed: "+err.message);
-        btn.disabled=false;
-        btn.innerHTML='<i class="ti ti-send" aria-hidden="true"></i> Submit ticket';
-      });
-  }
-});
-
-    var dept    = document.getElementById("fdept").value||"Not specified";
-    var asset   = document.getElementById("fasset").value.trim()||"Not provided";
-    var tkId    = document.getElementById("tid").textContent;
-    var priority= PLIST[pidx].l;
-    var stEl    = document.querySelector(".topt.sel span");
-    var svEl    = document.querySelector(".sbtn.act");
-    var reqType = stEl ? stEl.textContent : "Not selected";
-    var severity= svEl ? svEl.childNodes[0].textContent.trim()+" — "+svEl.querySelector(".sub").textContent : "SEV-3 — Medium";
-    var now     = new Date().toLocaleString("en-PH",{timeZone:"Asia/Manila"});
-
-    var payload = {
-      ticket_id:tkId, from_name:name, from_email:email, department:dept,
-      request_type:reqType, severity:severity, priority:priority,
-      issue_title:title, description:desc, asset_tag:asset, submitted_at:now
-    };
-
-    var btn=document.getElementById("sbtn");
-    btn.disabled=true;
-    btn.innerHTML='<div class="spin"></div> Sending\u2026';
+    btn.innerHTML = '<div class="spin"></div> Sending&hellip;';
     showS("inf","Submitting ticket \u2014 sending to IT queue\u2026");
 
     fetch(GAS_URL, { method:"POST", headers:{"Content-Type":"text/plain"}, body:JSON.stringify(payload) })
